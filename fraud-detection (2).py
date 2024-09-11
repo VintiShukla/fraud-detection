@@ -64,7 +64,11 @@ data.isFlaggedFraud.value_counts()
 
 
 # In[11]:
-
+#We can now create a heatmap to see the correlation of the features
+plt.figure(figsize=(10,5))
+sns.heatmap(data.corr(), linewidth=0.2, annot=True);
+plt.title('Correlation Heatmap of Fraud Detection Dataset')
+plt.show()
 
 from sklearn import preprocessing
 label_encoder=preprocessing.LabelEncoder()
