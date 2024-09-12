@@ -70,6 +70,16 @@ sns.heatmap(data.corr(), linewidth=0.2, annot=True);
 plt.title('Correlation Heatmap of Fraud Detection Dataset')
 plt.show()
 
+#We can explore the distribution of amount and isFraud relation further
+sns.histplot(data[data['isFraud'] == 1]['amount'], bins=5,color='orange',label='Fraudulent', kde=True, alpha=0.6)
+plt.xlabel('Transaction Amount')
+plt.ylabel('Density')
+plt.title('Distribution of Transaction Amounts for Fraudulent Transactions')
+plt.legend()
+plt.show()
+
+
+
 from sklearn import preprocessing
 label_encoder=preprocessing.LabelEncoder()
 data['type']=label_encoder.fit_transform(data["type"])
