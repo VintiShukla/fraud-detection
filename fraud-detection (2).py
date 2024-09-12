@@ -78,7 +78,15 @@ plt.title('Distribution of Transaction Amounts for Fraudulent Transactions')
 plt.legend()
 plt.show()
 
+#using a bar chart to compare the fraudulent vs non-fraudulent transaction by types
+plt.figure(figsize=(10, 6))
+sns.countplot(data=data, x='type', hue='isFraud')
 
+plt.xlabel('Transaction Type')
+plt.ylabel('Count of Transactions')
+plt.title('Count of Fraudulent and Non-Fraudulent Transactions by Type')
+plt.legend(title='Fraud Status', loc='upper right', labels=['Non-Fraudulent', 'Fraudulent'])
+plt.show()
 
 from sklearn import preprocessing
 label_encoder=preprocessing.LabelEncoder()
