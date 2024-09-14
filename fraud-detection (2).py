@@ -183,7 +183,7 @@ print(np.concatenate((y_pred.reshape(len(y_pred),1), y_test_array.reshape(len(y_
 
 
 #creating confusion matrix
-from sklearn.metrics import confusion_matrix, accuracy_score
+from sklearn.metrics import confusion_matrix, accuracy_score, roc_curve, roc_auc_score
 cm = confusion_matrix(y_test, y_pred)
 print(cm)
 accuracy_score(y_test, y_pred)
@@ -196,7 +196,7 @@ accuracy_score(y_test, y_pred)
 import matplotlib.pyplot as plt
 from sklearn import metrics
 cm_display = metrics.ConfusionMatrixDisplay(confusion_matrix = cm)
-cm_display.plot()
+cm_display.plot(cmap='Oranges')
 plt.show()
 
 
@@ -208,6 +208,16 @@ plt.show()
 
 
 # In[ ]:
+
+from sklearn.metrics import precision_score, recall_score, f1_score
+precision = precision_score(y_test, y_pred)
+recall = recall_score(y_test, y_pred)
+f1 = f1_score(y_test, y_pred)
+
+print(f"Precision: {precision:.2f}")
+print(f"Recall: {recall:.2f}")
+print(f"F1 Score: {f1:.2f}")
+
 
 
 
