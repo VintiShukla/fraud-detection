@@ -218,7 +218,19 @@ print(f"Precision: {precision:.2f}")
 print(f"Recall: {recall:.2f}")
 print(f"F1 Score: {f1:.2f}")
 
+#to get the predicted probabilities for x_test
+y_pred_prob = classifier.predict_proba(x_test)[:,1]
+print(y_pred_prob)
 
+#Now we'll plot the roc curve (true positive rate vs false positive rate for a threshold)
+fpr, tpr, thresholds = roc_curve(y_test, y_pred)
+plt.plot([0,1],[0,1],'--') #this plots a straight line (random classifier) on the graph
+plt.plot(fpr, tpr)
+plt.xlabel('FPR False positive rate')
+plt.ylabel('TPR True positive rate')
+plt.show()
+
+print(f'model AUC score: {roc_auc_score(y_test, y_pred)}')
 
 
 
