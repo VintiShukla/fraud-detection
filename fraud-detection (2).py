@@ -66,7 +66,7 @@ data.isFlaggedFraud.value_counts()
 # In[11]:
 #We can now create a heatmap to see the correlation of the features
 plt.figure(figsize=(10,5))
-sns.heatmap(data.corr(), linewidth=0.2, annot=True);
+sns.heatmap(data.corr(), linewidth=0.2, annot=True, cmap="Oranges");
 plt.title('Correlation Heatmap of Fraud Detection Dataset')
 plt.show()
 
@@ -142,15 +142,8 @@ print(x_test)
 #because when there is drastic difference in values, machine learning model will have bias
 from sklearn.preprocessing import StandardScaler
 sc = StandardScaler()
-
-x_train_array = x_train.values
-x_train_array[:, 1:] = sc.fit_transform(x_train_array[:, 1:])
-
-x_test_array = x_test.values
-x_test_array[:, 1:] = sc.transform(x_test_array[:, 1:])
-
-x_train = pd.DataFrame(x_train_array, columns=x_train.columns)
-x_test = pd.DataFrame(x_test_array, columns=x_test.columns)
+x_train=sc.fit_transform(x_train) 
+x_test=sc.fit_transform(x_test)
 
 
 # In[19]:
@@ -180,7 +173,7 @@ classifier.fit(x_train, y_train)
 
 #Predicting test set values
 y_pred = classifier.predict(x_test)
-y_test_array = y_test.values
+y_test_array = y_test.to_numpy()
 
 print(np.concatenate((y_pred.reshape(len(y_pred),1), y_test_array.reshape(len(y_test_array),1)),1))
 #creates a side by side comparison of predicted result and actual result of targeted output(isFraud)
